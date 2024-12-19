@@ -19,20 +19,6 @@ tags = []
 async def on_ready():
     print(f'Bot está pronto: {client.user.name}')
 
-
-# @client.event
-# async def on_message(message):
-#     # Ignora mensagens do próprio bot.
-#     if message.author.bot:
-#         return
-
-#     # Verifica se é um canal de fórum e processa o post.
-#     if isinstance(message.channel, discord.Thread):
-#         print(f'Author: {message.author.id}')
-#         user = await client.fetch_user(message.author.id)
-        
-#         process_post(message, user)
-
 @client.event
 async def on_thread_create(thread):
     if isinstance(thread.parent, discord.ForumChannel):
@@ -90,8 +76,6 @@ tags: {tags}
     
     with open(f"{thread.parent.id}_{thread.id}.md", "w") as file:
         file.write(blog_content)
-    
-    print(f"Blog post criado: {thread.parent.id}_{thread.id}.md")
 
 def format_tags(tag):
     return f'{tag}'
